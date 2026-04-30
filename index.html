@@ -3,27 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Headline Forge</title>
+    <title>APEX Headline Generator</title>
     <style>
-        body { font-family: sans-serif; margin: 2em; background-color: #f4f7f6; color: #333; }
-        .container { max-width: 700px; margin: auto; background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1 { color: #007bff; text-align: center; margin-bottom: 1.5em; }
-        p { line-height: 1.6; margin-bottom: 1em; }
-        .cta-button { display: block; width: fit-content; margin: 2em auto; padding: 0.8em 1.5em; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; text-decoration: none; text-align: center; }
-        .cta-button:hover { background-color: #218838; }
-        footer { text-align: center; margin-top: 3em; font-size: 0.8em; color: #666; }
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f7f6; color: #333; }
+        .container { max-width: 700px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 25px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
+        textarea, #headline-output { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+        textarea { resize: vertical; min-height: 100px; }
+        button { background-color: #007bff; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 17px; display: block; width: 100%; transition: background-color 0.3s ease; }
+        button:hover { background-color: #0056b3; }
+        #headline-output { background-color: #e9ecef; border-color: #ced4da; min-height: 50px; padding: 15px; border-left: 5px solid #007bff; overflow-wrap: break-word; }
+        .hidden { display: none; }
+        .loading { text-align: center; color: #666; margin-bottom: 15px; }
+        .price-tag { text-align: center; margin-top: 25px; font-size: 1.1em; color: #777; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Headline Forge Pro</h1>
-        <p>Unlock compelling headlines that grab attention and convert visitors into customers. Headline Forge generates 3-5 powerful, keyword-focused headlines for your landing pages, ensuring your message always stands out.</p>
-        <p>Tired of generic headlines? Just input a few keywords and let Headline Forge do the heavy lifting. Perfect for small businesses, indie hackers, and anyone who needs quick, effective copy without the hassle.</p>
-        <a href="#" class="cta-button" onclick="alert('Purchase flow coming soon! Redirect to Stripe.'); return false;">Get Your Headlines Now - $9.99</a>
-        <p>One-time purchase. Instant access. No subscriptions, just results.</p>
+        <h1>APEX Headline Generator</h1>
+        <p class="price-tag">Price: $9.99 (one-time purchase)</p>
+        <form id="headlineForm">
+            <label for="product-description">Product Description & Keywords:</label>
+            <textarea id="product-description" placeholder="e.g., An AI tool that writes compelling email subject lines for busy marketers, saving them hours each week."></textarea>
+            <button type="submit">Generate Headline</button>
+        </form>
+        <div id="loading" class="loading hidden">Generating awesome headlines...</div>
+        <div id="output-section" class="hidden">
+            <h3>Your Generated Headline:</h3>
+            <div id="headline-output"></div>
+        </div>
     </div>
-    <footer>
-        &copy; 2024 Apex Digital Products. All rights reserved.
-    </footer>
+
+    <script>
+        document.getElementById('headlineForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const description = document.getElementById('product-description').value;
+            const loadingDiv = document.getElementById('loading');
+            const outputSection = document.getElementById('output-section');
+            const headlineOutput = document.getElementById('headline-output');
+
+            loadingDiv.classList.remove('hidden');
+            outputSection.classList.add('hidden');
+            headlineOutput.textContent = '';
+
+            // In a real app, this would call your backend API which then calls the AI API
+            // For this MVP, we simulate a response.
+            setTimeout(() => {
+                const generatedHeadline = `Unlock ${description.split(' ')[0]} with AI-Powered Headlines.`; // Mock generation
+                headlineOutput.textContent = generatedHeadline;
+                loadingDiv.classList.add('hidden');
+                outputSection.classList.remove('hidden');
+            }, 2000);
+        });
+
+        // In a real application, a server-side route would handle the Stripe integration:
+        // POST /create-checkout-session
+        //   const session = await stripe.checkout.sessions.create({
+        //     payment_method_types: ['card'],
+        //     line_items: [{
+        //       price_data: {
+        //         currency: 'usd',
+        //         product_data: { name: 'Headline Generator Access' },
+        //         unit_amount: 999,
+        //       },
+        //       quantity: 1,
+        //     }],
+        //     mode: 'payment',
+        //     success_url: 'https://example.com/success',
+        //     cancel_url: 'https://example.com/cancel',
+        //   });
+        //   res.json({ id: session.id });
+    </script>
 </body>
 </html>
