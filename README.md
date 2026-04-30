@@ -1,15 +1,15 @@
-# Headline Forge Pro
+# APEX Headline Generator
 
-Headline Forge Pro is a simple, effective tool for generating compelling landing page headlines. Provide a few keywords, and get 3-5 tailored headline options to boost your conversion rates. Designed for speed and ease of use, perfect for busy entrepreneurs and marketers.
+A simple web app to generate compelling landing page headlines using AI, based on your product description and keywords. Perfect for small business owners, marketers, and indie hackers.
 
 ## Features:
-- Keyword-based headline generation.
-- Instant results.
-- Simple copy-to-clipboard functionality.
-- One-time purchase for lifetime access.
+- Input your product description and target keywords.
+- Get instant, AI-powered headline suggestions.
+- Clean, single-page interface.
 
-## Get Started:
-[Link to live product]
+## How to Use:
+1. Input a brief description of your product and relevant keywords into the text area.
+2. Click 'Generate Headline'.
+3. Receive a creative, impactful headline crafted by AI.
 
-## Support:
-Contact us at [support email].
+This is a one-time purchase product for quick and effective headline generation.
